@@ -9,7 +9,7 @@ module SpreeGarbageCleaner
         def destroy_garbage
           destroyed = []
 
-          self.garbage.find_each(:batch_size => Spree::GarbageCleaner::Config.batch_size) do |r|
+          garbage.find_each(batch_size: Spree::GarbageCleaner::Config.batch_size) do |r|
             destroyed << r.destroy
           end
 
