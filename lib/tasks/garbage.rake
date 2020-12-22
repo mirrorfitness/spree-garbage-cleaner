@@ -7,7 +7,7 @@ namespace :db do
 
       garbage_models.each do |model|
         destroyed = model.destroy_garbage
-        printf "Destroyed %i garbage records from %s\n", destroyed.length, model
+        puts "Destroyed #{destroyed.length} garbage records from #{model}\n"
       end
     end
 
@@ -19,7 +19,7 @@ namespace :db do
 
       puts 'The following garbage records have been found:'
       garbage_models.each do |model|
-        printf "%-#{longest_model_name.length}s ===> %i\n", model, model.constantize.garbage.count
+        puts "#{model}-#{longest_model_name.length}s ===> #{model.constantize.garbage.count}\n"
       end
     end
 

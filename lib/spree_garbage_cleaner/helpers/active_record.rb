@@ -10,7 +10,11 @@ module SpreeGarbageCleaner
           destroyed = []
 
           garbage.find_each(batch_size: Spree::GarbageCleaner::Config.batch_size) do |r|
-            destroyed << r.destroy
+            begin
+              destroyed << r.destroy
+            rescue StandardError => e
+              puts "Unable to destroy #{r.class} #{r&.id}"
+            end
           end
 
           destroyed
