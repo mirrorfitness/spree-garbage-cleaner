@@ -5,12 +5,8 @@ namespace :db do
       garbage_models = Spree::GarbageCleaner::Config.models_with_garbage.delete(' ').split(',').map(&:constantize)
 
       garbage_models.each do |model|
-        destroyed = model.destroy_garbage
-
-        destroyed.each do |trash|
-          puts "Destroyed #{model} id: #{trash.id}"
-        end
-
+        destroyed = model.destroy_garbage(debug: true)
+        
         puts "Destroyed #{destroyed.length} garbage records from #{model}\n"
       end
     end
