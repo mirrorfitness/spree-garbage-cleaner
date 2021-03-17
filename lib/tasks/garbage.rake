@@ -6,7 +6,7 @@ namespace :db do
 
       garbage_models.each do |model|
         destroyed = model.destroy_garbage(debug: true)
-        
+
         puts "Destroyed #{destroyed.length} garbage records from #{model}\n"
       end
     end
@@ -17,10 +17,6 @@ namespace :db do
 
       puts 'The following garbage records have been found:'
       garbage_models.each do |model|
-        model.constantize.garbage.each do |trash|
-          puts "#{model} trash id: #{trash.id}"
-        end
-
         puts "#{model}s ===> #{model.constantize.garbage.count}\n"
       end
     end
